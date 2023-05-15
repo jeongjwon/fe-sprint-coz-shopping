@@ -11,7 +11,7 @@ export const Gnb = styled.nav`
   display: flex;
   flex-direction: column;
   height: 8rem;
-
+  z-index:1;
   .shark {
     width: 1.6rem;
     padding-top: 1.8rem;

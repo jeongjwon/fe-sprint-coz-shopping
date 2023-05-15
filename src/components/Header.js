@@ -6,7 +6,7 @@ import { FaBars } from "react-icons/fa";
 
 import DropDowbMenu from "./DropdownMenu";
 
-import logo from "../logo.png";
+import logo from "../assets/logo.png";
 
 export const HeaderContainer = styled.header`
   display: flex;
