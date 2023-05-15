@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import { HiOutlineGift, HiOutlineStar } from "react-icons/hi";
 import { Link } from "react-router-dom";
+
+import styled from "styled-components";
+
+import { HiOutlineGift, HiOutlineStar } from "react-icons/hi";
 
 export const Gnb = styled.nav`
   position: absolute;
