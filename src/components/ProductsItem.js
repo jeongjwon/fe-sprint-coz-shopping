@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { HiOutlineStar } from "react-icons/hi";
 import bookmarkOff from "../assets/bookmark_off.png";
+import bookmarkOn from "../assets/bookmark_on.png";
 
 export const Item = styled.li`
   /* margin: 1rem; */
@@ -19,8 +21,13 @@ export const Item = styled.li`
     margin-bottom: 0.5rem;
     > .item-bookmark {
       position: absolute;
-      bottom: 12px;
-      right: 12px;
+      bottom: 8px;
+      right: 8px;
+      cursor: pointer;
+      >svg {
+        fill: rgba(223, 223, 223);
+        color: transparent;
+      }
     }
   }
   > .item-desc {
@@ -86,7 +93,7 @@ export const ItemDesc = styled.div`
 `;
 const ProductsItem = ({ item }) => {
   console.log(item);
-
+    const [bookmark, setBookmark] = useState(false);
   const showCard = (item) => {
     // type : Products, Category, Exhibition, Brand
        switch (item.type) {
@@ -139,7 +146,9 @@ const ProductsItem = ({ item }) => {
         return <></>;
     }
   };
-  const handleBookmark = () => {};
+  const handleBookmark = () => {
+    setBookmark(!bookmark)
+  };
   return (
     <Item>
       <div
@@ -150,7 +159,8 @@ const ProductsItem = ({ item }) => {
         }}
       >
         <label className="item-bookmark" onClick={handleBookmark}>
-          <img src={bookmarkOff} />
+          {/* <img src={bookmarkOff} /> */}
+          { bookmark ? <HiOutlineStar size={35} style={{fill:"#ffd361"}} /> : <HiOutlineStar size={35} /> }
         </label>
       </div>
 
