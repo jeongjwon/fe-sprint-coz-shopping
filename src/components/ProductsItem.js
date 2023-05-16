@@ -7,15 +7,15 @@ import bookmarkOn from "../assets/bookmark_on.png";
 export const Item = styled.li`
   /* margin: 1rem; */
   /* overflow:hidden ; */
-
+    
   display: flex;
   flex-direction: column;
   margin-right: 0.5rem;
 
   > .item-img {
     width: 20vw;
-    height: 30vh;
-    min-height: 30vh;
+    height: 25vh;
+    min-height: 20vh;
     position: relative;
     border-radius: 12px;
     margin-bottom: 0.5rem;
@@ -23,6 +23,8 @@ export const Item = styled.li`
       position: absolute;
       bottom: 8px;
       right: 8px;
+      background: transparent;
+      border: none;
       cursor: pointer;
       >svg {
         fill: rgba(223, 223, 223);
@@ -66,34 +68,36 @@ export const Item = styled.li`
     
   }
 `;
-export const ItemImg = styled.div`
-  width: 20vw;
-  height: 30vh;
-  margin-bottom: 0.5rem;
-  position: relative;
-  > img.product_img {
-    background-image: url(${(props) => props.src});
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 0.5rem;
-  }
-  > img.bookmark {
-    position: ;
-    top: ;
-  }
-`;
-export const ItemDesc = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 1.2rem;
-  font-weight: 500;
-`;
-const ProductsItem = ({ item }) => {
-  console.log(item);
-    const [bookmark, setBookmark] = useState(false);
+// export const ItemImg = styled.div`
+//   width: 20vw;
+//   height: 30vh;
+//   margin-bottom: 0.5rem;
+//   position: relative;
+//   > img.product_img {
+//     background-image: url(${(props) => props.src});
+//     background-size: cover;
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     border-radius: 12px;
+//     margin-bottom: 0.5rem;
+//   }
+//   > img.bookmark {
+//     position: ;
+//     top: ;
+//   }
+// `;
+// export const ItemDesc = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   font-size: 1.2rem;
+//   font-weight: 500;
+// `;
+const ProductsItem = ({ item , setItems}) => {
+
+  //북마크 버튼 클릭시 속성 추가
+   const [bookmark, setBookmark] = useState(item.bookmark);
+
   const showCard = (item) => {
     // type : Products, Category, Exhibition, Brand
        switch (item.type) {
@@ -126,7 +130,7 @@ const ProductsItem = ({ item }) => {
                <h3>{item.title}</h3>
             </div>
             <div className="item-desc-down" >
-            <div classNmae="detail-desc">{item.sub_title}    </div>
+            <div className="detail-desc">{item.sub_title}    </div>
             </div>
           </>
         );
@@ -147,7 +151,9 @@ const ProductsItem = ({ item }) => {
     }
   };
   const handleBookmark = () => {
-    setBookmark(!bookmark)
+    setBookmark(!bookmark);
+    setItems((prevState) =>
+      prevState.map((e) => e.id === item.id ? {...e, bookmark: !e.bookmark} : e)); 
   };
   return (
     <Item>
@@ -158,10 +164,10 @@ const ProductsItem = ({ item }) => {
           backgroundSize: "cover",
         }}
       >
-        <label className="item-bookmark" onClick={handleBookmark}>
+        <button className="item-bookmark" type="button" onClick={handleBookmark}>
           {/* <img src={bookmarkOff} /> */}
           { bookmark ? <HiOutlineStar size={35} style={{fill:"#ffd361"}} /> : <HiOutlineStar size={35} /> }
-        </label>
+        </button>
       </div>
 
       <div className="item-desc">

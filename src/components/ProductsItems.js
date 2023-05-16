@@ -3,6 +3,9 @@
 import styled from "styled-components";
 import ProductsItem from "./ProductsItem";
 
+export const ProductsSection = styled.section`
+    margin: 1rem;
+`;
 export const ItemContainer = styled.ul`
   display: flex;
   list-style: none;
@@ -11,18 +14,22 @@ export const ItemContainer = styled.ul`
 `;
 
 
-const ProductsItems = ({items}) => {
+const ProductsItems = ({items, setItems}) => {
     return(
-        <section>
+        <ProductsSection>
         <h2>상품리스트</h2>
         <ItemContainer>
           {items.map((item) => {
-            return <ProductsItem
+            return  <ProductsItem
+                key={item.id}
+                id={item.id}
                 item={item} 
-                key={item.id}/>
+                setItems={setItems}
+  
+            />
           })}
         </ItemContainer>
-      </section>
+      </ProductsSection>
     );
 }
 export default ProductsItems;

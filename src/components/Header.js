@@ -47,7 +47,6 @@ const Header = () => {
     const handdleToggle = () => {
         setToggle(!toggle);
     }
-    console.log('toggle', toggle)
   return (
     <HeaderContainer>
       <div className="header-wrapper">
