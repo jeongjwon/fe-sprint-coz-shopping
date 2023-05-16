@@ -3,6 +3,11 @@ export const CardContainer = styled.div`
 `;
 const BgContainer = styled.div`
 `;
+// type : Products, Category, Exhibition, Brand
+// Products 일 때 세일률 + 가격
+// Exhibition 일 때 title, sub_title
+// Category 일 때는 # 추가
+// Brand 일 때는 
 const Card = ({ cards }) => {
   console.log(cards);
   const showCard = (card) => {

@@ -55,7 +55,8 @@ export const Gnb = styled.nav`
   }
 `;
 
-const DropDowbMenu = ({handleToggle}) => {
+const DropDowbMenu = ({ handleToggle }) => {
+ 
   return (
     <Gnb>
       <div className="shark"></div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 
-import DropDowbMenu from "./DropdownMenu";
+import DropdownMenu from "./DropdownMenu";
 
 import logo from "../assets/logo.png";
 
@@ -43,9 +43,11 @@ export const HeaderContainer = styled.header`
 `;
 const Header = () => {
     const [toggle, setToggle] = useState(false);
+
     const handdleToggle = () => {
         setToggle(!toggle);
     }
+    console.log('toggle', toggle)
   return (
     <HeaderContainer>
       <div className="header-wrapper">
@@ -59,7 +61,7 @@ const Header = () => {
           <FaBars size={30}/>
         </div>
         { toggle && (
-            <DropDowbMenu handdleToggle={handdleToggle}/>
+            <DropdownMenu handdleToggle={handdleToggle}/>
         )}
       </div>
     </HeaderContainer>
