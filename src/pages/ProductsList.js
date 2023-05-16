@@ -6,24 +6,38 @@ export const ProductsListContainer = styled.main`
     padding : 2rem 8rem;
 `;
 const ProductsList = () => {
+  const titles = ['Product', 'Category', 'Exhibition' , 'Brand'];
+    const [index, setIndex] = useState(0);
+    const [items, setItems] = useState([]);
     const [products, setProducts] = useState([]);
     const getProducts = () => {
         fetch(`http://cozshopping.codestates-seb.link/api/v1/products?`)
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            setProducts(data.map((item) => ({...item, bookmark: false})));
+            setItems(data.map((item) => ({...item, bookmark: false})));
           });
       };
+
       useEffect(() => {
         getProducts();
       }, []);
+
+      useEffect(()=>{
+        // console.log('index 가 바뀔 때 마다');
+        setProducts(items.filter((item) => {
+          console.log(titles[index-1]);
+          return index > 0 ? item.type === titles[index-1] : item 
+        }));
+      }, [index]);
+
+    
     return(
     <ProductsListContainer>
-        <ProductsNav />
+        <ProductsNav setIndex={setIndex} />
 
-        상품리스트 페이지
-        <ProductsItems items={products} setItems={setProducts} />
+        
+        <ProductsItems index={index} items={products} setItems={setProducts} />
 
     </ProductsListContainer>
     )

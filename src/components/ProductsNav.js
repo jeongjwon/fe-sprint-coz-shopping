@@ -16,6 +16,7 @@ export const NavContainer = styled.ul`
 `;
 export const NavList = styled.li`
     margin: 1rem;
+    cursor: pointer;
     > .nav-box{
         display: flex;
         flex-direction: column;
@@ -29,7 +30,7 @@ export const NavList = styled.li`
         }
     }
 `;
-const ProductsNav = () => {
+const ProductsNav = ({setIndex}) => {
     const [images, setImages] = useState([]);
     const titles = ["전체", "상품", "카테고리", "기획전", "브랜드"]
 
@@ -42,7 +43,7 @@ const ProductsNav = () => {
         <NavContainer>
             {images.map((image,idx) => {
                 return(
-                    <NavList>
+                    <NavList onClick={()=>setIndex(idx)}>
                         <div className="nav-box">
                             <img src={image} alt={image} />
                             <span>{titles[idx]}</span>

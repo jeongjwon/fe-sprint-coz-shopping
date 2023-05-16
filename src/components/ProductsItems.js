@@ -1,5 +1,5 @@
 
-
+import { useEffect } from "react";
 import styled from "styled-components";
 import ProductsItem from "./ProductsItem";
 
@@ -15,19 +15,46 @@ export const ItemContainer = styled.ul`
 `;
 
 
-const ProductsItems = ({items, setItems}) => {
+const ProductsItems = ({items, setItems, index}) => {
+  //   const titles = [, 'Products', 'Category', 'Exhibition' , 'Brand'];
+
+  // useEffect(() => {
+  //   setItems(items.filter((item) => item.type === titles[index] ))
+  // },[index]);
+
+  console.log(index, items);
     return(
         <ProductsSection>
         <h2>상품리스트</h2>
         <ItemContainer>
           {items.map((item) => {
             return  <ProductsItem
-                key={item.id}
-                id={item.id}
-                item={item} 
-                setItems={setItems}
-  
+            key={item.id}
+            id={item.id}
+            item={item} 
+            setItems={setItems}
+            index={index}
             />
+            
+            // switch(index){
+             
+            //   case '0':
+            //     return  <ProductsItem
+            //     key={item.id}
+            //     id={item.id}
+            //     item={item} 
+            //     setItems={setItems}
+            //     />
+            //   case '1':
+            //    return item.type==='Product' ?
+            //      <ProductsItem
+            //     key={item.id}
+            //     id={item.id}
+            //     item={item} 
+            //     setItems={setItems}
+            //     /> : null 
+            // }
+           
           })}
         </ItemContainer>
       </ProductsSection>
