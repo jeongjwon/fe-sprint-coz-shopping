@@ -44,7 +44,7 @@ export const HeaderContainer = styled.header`
 const Header = () => {
     const [toggle, setToggle] = useState(false);
 
-    const handdleToggle = () => {
+    const handleToggle = () => {
         setToggle(!toggle);
     }
   return (
@@ -56,11 +56,11 @@ const Header = () => {
             <span>COZ Shopping</span>
           </h1>
         </Link>
-        <div className="gnb-btn" onClick={handdleToggle}>
+        <div className="gnb-btn" onClick={handleToggle}>
           <FaBars size={30}/>
         </div>
         { toggle && (
-            <DropdownMenu handdleToggle={handdleToggle}/>
+            <DropdownMenu handleToggle={handleToggle}/>
         )}
       </div>
     </HeaderContainer>

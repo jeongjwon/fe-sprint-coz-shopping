@@ -10,12 +10,13 @@ export const Item = styled.li`
     
   display: flex;
   flex-direction: column;
-  margin-right: 0.5rem;
-
+  width: calc((100% - 7.2rem) / 4);
+  margin-right: 0.8em;
+  
   > .item-img {
     width: 20vw;
     height: 25vh;
-    min-height: 20vh;
+    min-height: 25vh;
     position: relative;
     border-radius: 12px;
     margin-bottom: 0.5rem;
@@ -35,7 +36,7 @@ export const Item = styled.li`
   > .item-desc {
     display: flex;
     flex-direction: column;
-
+    margin-bottom: 0.5rem;
     > .item-desc-up{
         display: flex;
         justify-content: space-between;
