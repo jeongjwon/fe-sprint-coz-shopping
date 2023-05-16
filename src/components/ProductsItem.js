@@ -106,7 +106,7 @@ const ProductsItem = ({ item }) => {
             </div>
                 
             <div className="item-desc-down">
-                <div className="price">{item.price}원</div>
+                <div className="price">{Number(item.price).toLocaleString("ko-KR")}원</div>
             </div>
           </>
         );
@@ -138,7 +138,7 @@ const ProductsItem = ({ item }) => {
                 <div className="follower_up">관심고객수</div>
             </div>
             <div className="item-desc-down">
-            <div className="follower_down">{item.follower}</div>
+            <div className="follower_down">{Number(item.follower).toLocaleString("ko-KR")}</div>
             </div>
           </>
         );
