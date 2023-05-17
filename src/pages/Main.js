@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import ProductsItems from "../components/ProductsItems";
 import BookmarkItems from "../components/BookmarkItems";
 import LocalStorage from "../LocalStorage";
+import Loading from "../components/Loading";
 
 import * as M from "../style/Main.styled";
 
@@ -25,6 +26,7 @@ const Main = () => {
     getProducts();
     setItems(lists.splice(0,4));
   }, []);
+
   console.log("main", items);
 
   return (
@@ -35,11 +37,14 @@ const Main = () => {
       </M.ProductsSection>
       <M.ProductsSection>
         <M.Title>북마크 리스트</M.Title>
+        {
+          (items.filter((item) => item.bookmark)).length > 0 ? 
+        
         <BookmarkItems
-          bookmarkItems={items}
+
           items={items}
-          setIndex={setIndex}
-        />
+          setIndex={setItems}
+        /> : <Loading /> }
       </M.ProductsSection>
     </M.MainContainer>
   );
