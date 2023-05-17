@@ -1,4 +1,46 @@
-const Main = () => {
+import { useState, useEffect } from "react";
+import Card from "../components/Card";
 
-}
+import ProductsItems from "../components/ProductsItems";
+import BookmarkItems from "../components/BookmarkItems";
+import LocalStorage from "../LocalStorage";
+
+import * as M from "../style/Main.styled";
+
+const Main = () => {
+  const [index, setIndex] = useState(0);
+  // const [items, setItems] = useState([]);
+  const [items, setItems] = LocalStorage("bookmarkLists", []);
+  const [bookmarkItems, setBookmarkItems] = LocalStorage("bookmarkLists", []);
+
+  const getProducts = () => {
+    fetch(`http://cozshopping.codestates-seb.link/api/v1/products?count=4`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setItems(data.map((item) => ({ ...item, bookmark: false })));
+      });
+  };
+  useEffect(() => {
+    getProducts();
+  }, []);
+  console.log("main", items);
+
+  return (
+    <M.MainContainer>
+      <M.ProductsSection>
+        <M.Title>상품 리스트</M.Title>
+        <ProductsItems items={items} setItems={setItems} />
+      </M.ProductsSection>
+      <M.ProductsSection>
+        <M.Title>북마크 리스트</M.Title>
+        <BookmarkItems
+          bookmarkItems={bookmarkItems}
+          items={items}
+          setIndex={setIndex}
+        />
+      </M.ProductsSection>
+    </M.MainContainer>
+  );
+};
 export default Main;
