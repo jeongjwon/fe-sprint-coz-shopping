@@ -11,11 +11,17 @@ export const MainContainer = styled.main`
   flex-direction: column;
 
 `;
+export const ProductsSection = styled.section`
+    margin: 1rem;
+`;
+export const Title = styled.h2`
 
+`;
 const Main = () => {
+  const [index, setIndex] = useState(0);
   // const [items, setItems] = useState([]);
-  const [items, setItems] = useState([]);
-  const [bookmarkedItems, setBookmarkedItems] =  LocalStorage("bookmarkLists", []); 
+  const [items, setItems] = LocalStorage("bookmarkLists", []); 
+  const [bookmarkItems, setBookmarkItems] =  LocalStorage("bookmarkLists", []); 
 
   const getProducts = () => {
     fetch(`http://cozshopping.codestates-seb.link/api/v1/products?count=4`)
@@ -32,11 +38,21 @@ const Main = () => {
 
   return (
     <MainContainer>
-      <ProductsItems 
+      <ProductsSection>
+        <Title>상품 리스트</Title>
+        <ProductsItems 
         items={items} 
         setItems={setItems} 
         />
-      <BookmarkItems items={items}/>
+        </ProductsSection>
+        <ProductsSection>
+        <Title>북마크 리스트</Title>
+        <BookmarkItems 
+      bookmarkItems={bookmarkItems}
+        items={items} 
+        setIndex={setIndex}/>
+        </ProductsSection>
+     
     </MainContainer>
   );
 };

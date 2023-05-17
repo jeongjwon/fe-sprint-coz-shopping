@@ -3,7 +3,7 @@ import { useState } from "react";
 import { HiOutlineStar } from "react-icons/hi";
 import bookmarkOff from "../assets/bookmark_off.png";
 import bookmarkOn from "../assets/bookmark_on.png";
-
+import Modal from "./Modal";
 export const Item = styled.li`
   /* margin: 1rem; */
   /* overflow:hidden ; */
@@ -95,9 +95,10 @@ export const Item = styled.li`
 //   font-weight: 500;
 // `;
 const ProductsItem = ({ item , setItems}) => {
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [info, setInfo] = useState([]);
   //북마크 버튼 클릭시 속성 추가
-   const [bookmark, setBookmark] = useState(item.bookmark);
+  const [bookmark, setBookmark] = useState(item.bookmark);
 
   const showCard = (item) => {
     // type : Products, Category, Exhibition, Brand
@@ -155,9 +156,17 @@ const ProductsItem = ({ item , setItems}) => {
     setBookmark(!bookmark);
     setItems((prevState) =>
       prevState.map((e) => e.id === item.id ? {...e, bookmark: !e.bookmark} : e)); 
+    
   };
+  const openModal = () => {
+    setIsOpen(!isOpen);
+    console.log(item);
+   setInfo({title: item.title || item.brand_name , url: item.image_url || item.brand_image_url, bookmark: item.bookmark});
+
+  }
   return (
-    <Item>
+    <>
+    <Item onClick={openModal}>
       <div
         className="item-img"
         style={{
@@ -166,7 +175,6 @@ const ProductsItem = ({ item , setItems}) => {
         }}
       >
         <button className="item-bookmark" type="button" onClick={handleBookmark}>
-          {/* <img src={bookmarkOff} /> */}
           { bookmark ? <HiOutlineStar size={35} style={{fill:"#ffd361"}} /> : <HiOutlineStar size={35} /> }
         </button>
       </div>
@@ -176,6 +184,8 @@ const ProductsItem = ({ item , setItems}) => {
       </div>
     
     </Item>
+    { isOpen ?  <Modal openModal={openModal} info={info}/> : null}
+    </>
   );
 };
 export default ProductsItem;

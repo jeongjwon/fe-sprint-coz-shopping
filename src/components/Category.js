@@ -43,7 +43,7 @@ const ProductsNav = ({setIndex}) => {
         <NavContainer>
             {images.map((image,idx) => {
                 return(
-                    <NavList onClick={()=>setIndex(idx)}>
+                    <NavList key={idx} onClick={()=>setIndex(idx)}>
                         <div className="nav-box">
                             <img src={image} alt={image} />
                             <span>{titles[idx]}</span>

@@ -14,13 +14,7 @@ const BookmarkItems = ({items}) => {
     const [bookmarkedItems, setBookmarkedItems] = useState([]);
     console.log('bookmarkItems', items);
     
-    // useEffect(() => {
-
-    // },[items])
-
     return(
-        <ProductsSection>
-        <h2>북마크 리스트</h2>
         <ItemContainer>
           {items.map((item) => 
             item.bookmark ? <ProductsItem
@@ -28,7 +22,6 @@ const BookmarkItems = ({items}) => {
                 key={item.id}/>
            : null )}
         </ItemContainer>
-      </ProductsSection>
     );
 }
 export default BookmarkItems;

@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import ProductsItem from "./ProductsItem";
 
-export const ProductsSection = styled.section`
-    margin: 1rem;
-`;
+
 export const ItemContainer = styled.ul`
   display: flex;
   list-style: none;
@@ -16,16 +14,10 @@ export const ItemContainer = styled.ul`
 
 
 const ProductsItems = ({items, setItems, index}) => {
-  //   const titles = [, 'Products', 'Category', 'Exhibition' , 'Brand'];
-
-  // useEffect(() => {
-  //   setItems(items.filter((item) => item.type === titles[index] ))
-  // },[index]);
+ 
 
   console.log(index, items);
     return(
-        <ProductsSection>
-        <h2>상품리스트</h2>
         <ItemContainer>
           {items.map((item) => {
             return  <ProductsItem
@@ -57,7 +49,6 @@ const ProductsItems = ({items, setItems, index}) => {
            
           })}
         </ItemContainer>
-      </ProductsSection>
     );
 }
 export default ProductsItems;
