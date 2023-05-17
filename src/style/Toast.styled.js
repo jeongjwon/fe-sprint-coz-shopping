@@ -1,5 +1,16 @@
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import styled, { keyframes } from "styled-components";
+// const slideIn = keyframes`
+//   from {
+//     margin-left: 100%;
+//     /* width: ; */
+//   }
+//   to{
+//     margin-left: 30%;
+//     width: 100%;
+//   }
+// `
+
 export const ToastContainer = styled.div`
   position: absolute;
   bottom: 2rem;
@@ -10,22 +21,13 @@ export const ToastContainer = styled.div`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
 
   animation-duration: 1.5s;
-  animation-name: ${slideIn};
+
   z-index: 1;
   /* transform: translateX(calc(100%-2rem));
   transition: all 2s  cubic-bezier(0.68, -0.55, 0.25, 1.35); */
 `;
 
-const slideIn = keyframes`
-  from {
-    margin-left: 100%;
-    /* width: ; */
-  }
-  to{
-    margin-left: 30%;
-    width: 100%;
-  }
-`
+
 
 export const ToastDiv = styled.div`
   display: flex;
