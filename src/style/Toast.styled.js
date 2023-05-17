@@ -9,6 +9,7 @@ export const ToastContainer = styled.div`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
   animation-duration: 3s;
   animation-name:slidein;
+  z-index: 1;
   /* transform: translateX(calc(100%-2rem));
   transition: all 2s  cubic-bezier(0.68, -0.55, 0.25, 1.35); */
 `;
