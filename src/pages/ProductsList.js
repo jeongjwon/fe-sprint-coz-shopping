@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { styled } from "styled-components";
+
 import Category from "../components/Category";
 import ProductsItems from "../components/ProductsItems";
 
-export const ProductsListContainer = styled.main`
-    padding : 2rem 8rem;
-`;
+import * as P from "../style/ProductsList.styled";
 const ProductsList = () => {
     const titles = ['Product', 'Category', 'Exhibition' , 'Brand'];
     const [index, setIndex] = useState(0);
@@ -38,10 +36,10 @@ const ProductsList = () => {
 
     
     return(
-    <ProductsListContainer>
+    <P.ProductsListContainer>
         <Category setIndex={setIndex} />
         <ProductsItems index={index} items={products} setItems={setProducts} />
-    </ProductsListContainer>
+    </P.ProductsListContainer>
     )
    
 }

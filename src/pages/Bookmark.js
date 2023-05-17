@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { styled } from "styled-components";
+
 import Category from "../components/Category";
 import ProductsItems from "../components/ProductsItems";
 import LocalStorage from "../LocalStorage";
 
-export const BookmarkContainer = styled.main`
-    padding : 2rem 8rem;
-`;
+import * as B from "../style/Bookmark.styled";
+
+
 const Bookmark = () => {
     const titles = ['Product', 'Category', 'Exhibition' , 'Brand'];
     const [index, setIndex] = useState(0);
@@ -51,10 +51,10 @@ const Bookmark = () => {
 
     
     return(
-    <BookmarkContainer>
+    <B.BookmarkContainer>
         <Category setIndex={setIndex} />
         <ProductsItems index={index} items={products} setItems={setProducts} />
-    </BookmarkContainer>
+    </B.BookmarkContainer>
     )
    
 }

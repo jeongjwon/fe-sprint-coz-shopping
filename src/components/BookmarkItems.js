@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ProductsItem from "./ProductsItem";
 import {useState, useEffect} from "react";
+
 export const ProductsSection = styled.section`
     margin: 1rem;
 `;
