@@ -4,6 +4,7 @@ export const NavContainer = styled.ul`
     display: flex;
     justify-content: center;
     list-style: none;
+    margin-bottom: 1.2rem;
     
 `;
 export const NavList = styled.li`
