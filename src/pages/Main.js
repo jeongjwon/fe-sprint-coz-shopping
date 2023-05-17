@@ -10,19 +10,20 @@ import * as M from "../style/Main.styled";
 const Main = () => {
   const [index, setIndex] = useState(0);
   // const [items, setItems] = useState([]);
-  const [items, setItems] = LocalStorage("bookmarkLists", []);
-  const [bookmarkItems, setBookmarkItems] = LocalStorage("bookmarkLists", []);
+  const [lists, setLists] = LocalStorage("bookmarkLists", []);
+  const [items, setItems] = useState([]);
 
   const getProducts = () => {
-    fetch(`http://cozshopping.codestates-seb.link/api/v1/products?count=4`)
+    fetch(`http://cozshopping.codestates-seb.link/api/v1/products?`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setItems(data.map((item) => ({ ...item, bookmark: false })));
+        setLists(data.map((item) => ({ ...item, bookmark: false })));
       });
   };
   useEffect(() => {
     getProducts();
+    setItems(lists.splice(0,4));
   }, []);
   console.log("main", items);
 
@@ -35,7 +36,7 @@ const Main = () => {
       <M.ProductsSection>
         <M.Title>북마크 리스트</M.Title>
         <BookmarkItems
-          bookmarkItems={bookmarkItems}
+          bookmarkItems={items}
           items={items}
           setIndex={setIndex}
         />
