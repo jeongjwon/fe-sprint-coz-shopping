@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { HiOutlineStar } from "react-icons/hi";
-import bookmarkOff from "../assets/bookmark_off.png";
-import bookmarkOn from "../assets/bookmark_on.png";
 import Modal from "./Modal";
+import Toast from "./Toast";
+
 export const Item = styled.li`
   /* margin: 1rem; */
   /* overflow:hidden ; */
@@ -69,37 +69,33 @@ export const Item = styled.li`
     
   }
 `;
-// export const ItemImg = styled.div`
-//   width: 20vw;
-//   height: 30vh;
-//   margin-bottom: 0.5rem;
-//   position: relative;
-//   > img.product_img {
-//     background-image: url(${(props) => props.src});
-//     background-size: cover;
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover;
-//     border-radius: 12px;
-//     margin-bottom: 0.5rem;
-//   }
-//   > img.bookmark {
-//     position: ;
-//     top: ;
-//   }
-// `;
-// export const ItemDesc = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   font-size: 1.2rem;
-//   font-weight: 500;
-// `;
+export const ImgDiv = styled.div`
+ position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      >svg {
+        fill: rgba(223, 223, 223);
+        color: transparent;
+      }
+`;
+export const BookmarkBtn = styled.button`
+   position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+
+`
 const ProductsItem = ({ item , setItems}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [info, setInfo] = useState([]);
   //북마크 버튼 클릭시 속성 추가
   const [bookmark, setBookmark] = useState(item.bookmark);
-
+  const [showToast, setShowToast] = useState(false);
   const showCard = (item) => {
     // type : Products, Category, Exhibition, Brand
        switch (item.type) {
@@ -152,11 +148,21 @@ const ProductsItem = ({ item , setItems}) => {
         return <></>;
     }
   };
+  const activeToast = () => {
+    setShowToast(true);
+    let timer = setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timer);
+    }
+  }
   const handleBookmark = () => {
+    
     setBookmark(!bookmark);
     setItems((prevState) =>
       prevState.map((e) => e.id === item.id ? {...e, bookmark: !e.bookmark} : e)); 
-    
+    activeToast();
   };
   const openModal = () => {
     setIsOpen(!isOpen);
@@ -166,26 +172,35 @@ const ProductsItem = ({ item , setItems}) => {
   }
   return (
     <>
-    <Item onClick={openModal}>
-      <div
+    <Item >
+      <ImgDiv
+        onClick={openModal}
         className="item-img"
         style={{
           background: `url(${item.image_url || item.brand_image_url})`,
           backgroundSize: "cover",
         }}
       >
-        <button className="item-bookmark" type="button" onClick={handleBookmark}>
+        
+        <BookmarkBtn 
+          className="item-bookmark" 
+          type="button" 
+          onClick={(e) => {
+            e.stopPropagation();
+            handleBookmark();
+          }}>
           { bookmark ? <HiOutlineStar size={35} style={{fill:"#ffd361"}} /> : <HiOutlineStar size={35} /> }
-        </button>
-      </div>
+        </BookmarkBtn>
+        </ImgDiv>
 
       <div className="item-desc">
         {showCard(item)}   
       </div>
-    
     </Item>
     { isOpen ?  <Modal openModal={openModal} info={info}/> : null}
+     { showToast &&<Toast bookmark={bookmark}/> }
     </>
   );
 };
 export default ProductsItem;
+
