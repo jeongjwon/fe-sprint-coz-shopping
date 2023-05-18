@@ -7,4 +7,7 @@ export const FooterContainer = styled.footer`
     font-weight: 400;
     padding: 1rem 0 ;
     border-top : 1px solid rgba(0, 0, 0, 0.1);
+    position: sticky;
+    bottom: 0;
+    background: #ffffff;
 `;

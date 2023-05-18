@@ -4,7 +4,10 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: center;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
-
+  position: sticky;
+  top: 0;
+  z-index: 111111;
+  background: #ffffff;
   .header-wrapper{
     position: relative;
     display: flex;
