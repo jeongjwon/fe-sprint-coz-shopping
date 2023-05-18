@@ -4,14 +4,31 @@ import axios from "axios";
 import Item from "../components/Item";
 import * as L from "../style/List.styled";
 import * as P from "../style/ProductsList.styled";
+
+import * as C from "../style/Category.styled";
 import { useSelector } from "react-redux";
 
-const BookmarkList = () => {
+import all from "../assets/productsNav/all.png";
+import product from "../assets/productsNav/product.png";
+import category from "../assets/productsNav/category.png";
+import exhibition from "../assets/productsNav/exhibition.png";
+import brand from "../assets/productsNav/brand.png";
+
+
+const Bookmark = () => {
+
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
-  const [type, setType] = useState("All");
+  const [type, setType] = useState(null);
   const bookmark = useSelector(state => state.bookmark);
-  
+ 
+  const categoryLists = [
+    { title: "전체", type: "All", img_url: all },
+    { title: "상품", type: "Product", img_url: product },
+    { title: "카테고리", type: "Category", img_url: category },
+    { title: "기획전", type: "Exhibition", img_url: exhibition },
+    { title: "브랜드", type: "Brand", img_url: brand },
+  ];
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,18 +45,36 @@ const BookmarkList = () => {
     };
     fetchData();
   }, []);
-
+  
   return (
     <>
       <P.ProductsListContainer>
-        <Category />
+      <C.NavContainer>
+          {categoryLists.map((list, idx) => {
+            return (
+              <C.NavList
+                key={idx}
+                onClick={() =>
+                  setType(list.type === "전체" ? null : list.type)
+                }
+              >
+                <div className="nav-box">
+                  <img src={list.img_url} alt={list.img_url} />
+                  <span>{list.title}</span>
+                </div>
+              </C.NavList>
+            );
+          })}
+        </C.NavContainer>
 
         <L.ProductsSection>
           <L.ItemContainer>
-            {error ? (
+          {error ? (
               <div>{error}</div>
             ) : (
-              items.map((item) => <Item item={item} key={item.id} />)
+              items
+                .filter((item) =>  type === null || item.type === type)
+                .map((item, idx) => <Item item={item} key={`id${idx}`} />)
             )}
           </L.ItemContainer>
         </L.ProductsSection>
@@ -48,4 +83,4 @@ const BookmarkList = () => {
   );
 };
 
-export default BookmarkList;
+export default Bookmark;
