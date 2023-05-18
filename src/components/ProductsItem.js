@@ -83,7 +83,6 @@ const ProductsItem = ({ item , setItems}) => {
   };
   const openModal = () => {
     setIsOpen(!isOpen);
-    console.log(item);
    setInfo({title: item.title || item.brand_name , url: item.image_url || item.brand_image_url, bookmark: item.bookmark});
 
   }

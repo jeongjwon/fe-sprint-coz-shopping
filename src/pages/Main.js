@@ -18,7 +18,7 @@ const Main = () => {
     fetch(`http://cozshopping.codestates-seb.link/api/v1/products?`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+
         setLists(data.map((item) => ({ ...item, bookmark: false })));
       });
   };
@@ -28,7 +28,7 @@ const Main = () => {
     setItems(lists.slice(0,4));
   }, []);
 
-  console.log(lists, items);
+
   return (
     <M.MainContainer>
       <M.ProductsSection>

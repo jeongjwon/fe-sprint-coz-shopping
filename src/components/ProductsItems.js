@@ -5,7 +5,7 @@ import ProductsItem from "./ProductsItem";
 import * as P from "../style/ProductsItems.styled";
 
 const ProductsItems = ({ items, setItems, index }) => {
-  console.log(index, items);
+
   return (
     <P.ItemContainer>
       {items.map((item) => {

@@ -9,7 +9,7 @@ const BgContainer = styled.div`
 // Category 일 때는 # 추가
 // Brand 일 때는 
 const Card = ({ cards }) => {
-  console.log(cards);
+
   const showCard = (card) => {
     switch (card.type) {
       case "Product":

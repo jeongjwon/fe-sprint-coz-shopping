@@ -6,8 +6,6 @@ import * as M from "../style/Modal.styled";
 const Modal = ({ openModal, info }) => {
     const [bookmark, setBookmark] = useState(info.bookmark);
     // const { title, url, bookmark } = info;
-
-  console.log(info);
   return (
     <M.Background onClick={openModal}>
       <M.ModalDiv img={info.url} onClick={(e) => e.stopPropagation()}>
