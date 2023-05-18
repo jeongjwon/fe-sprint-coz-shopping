@@ -2,6 +2,7 @@ import * as P from "../style/Item.styled";
 import { useSelector, useDispatch } from "react-redux";
 import {modalActions} from "../store/modal";
 import { HiOutlineStar } from "react-icons/hi";
+import { bookmarkActions } from "../store/bookmark";
 
 const Item = ({ item }) => {
     if(!item) return null;
@@ -9,9 +10,16 @@ const Item = ({ item }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
    const dispatch = useDispatch();
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+   const isMarked = useSelector((state) => state.bookmark.includes(item.id));
+
     const handleOpenModal =() => {
         dispatch(modalActions.open());
         dispatch(modalActions.showModal(item));
+    }
+    const handleBookmark = (e) =>{
+      e.stopPropagation();
+      dispatch(bookmarkActions.toggleBookmark(item.id));
     }
    
   const showCard = (item) => {
@@ -78,9 +86,9 @@ const Item = ({ item }) => {
           backgroundSize: "cover",
         }}
       >
-        <P.BookmarkBtn className="item-bookmark" type="button">
-          <HiOutlineStar size={35} />
-          {/* { isMarked ? <HiOutlineStar size={35} style={{fill:"#ffd361"}} /> : <HiOutlineStar size={35} /> } */}
+        <P.BookmarkBtn onClick={handleBookmark} className="item-bookmark" type="button">
+          {/* <HiOutlineStar size={35} /> */}
+          { isMarked ? <HiOutlineStar size={35} style={{fill:"#ffd361"}} /> : <HiOutlineStar size={35} /> }
         </P.BookmarkBtn>
       </P.ItemImage>
 
