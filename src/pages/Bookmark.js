@@ -1,58 +1,51 @@
-import { useState, useEffect } from "react";
-
 import Category from "../components/Category";
-import ProductsItems from "../components/ProductsItems";
-import LocalStorage from "../LocalStorage";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Item from "../components/Item";
+import * as L from "../style/List.styled";
+import * as P from "../style/ProductsList.styled";
+import { useSelector } from "react-redux";
 
-import * as B from "../style/Bookmark.styled";
+const BookmarkList = () => {
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState(null);
+  const [type, setType] = useState("All");
+  const bookmark = useSelector(state => state.bookmark);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://cozshopping.codestates-seb.link/api/v1/products?count"
+        );
+        setItems(res.data.filter((d) => {
+            return bookmark.includes(d.id);
+        }));
+      } catch (error) {
+        setError("데이터를 가져오는 도중에 에러가 발생했습니다.");
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
+  return (
+    <>
+      <P.ProductsListContainer>
+        <Category />
 
-const Bookmark = () => {
-    const titles = ['Product', 'Category', 'Exhibition' , 'Brand'];
-    const [index, setIndex] = useState(0);
-    // const [items, setItems] = useState([]);
-    const [items, setItems] =  LocalStorage("bookmarkLists", []);
-    const [products, setProducts] = useState([]);
+        <L.ProductsSection>
+          <L.ItemContainer>
+            {error ? (
+              <div>{error}</div>
+            ) : (
+              items.map((item) => <Item item={item} key={item.id} />)
+            )}
+          </L.ItemContainer>
+        </L.ProductsSection>
+      </P.ProductsListContainer>
+    </>
+  );
+};
 
-    const getProducts = () => {
-        fetch(`http://cozshopping.codestates-seb.link/api/v1/products?`)
-          .then((res) => res.json())
-          .then((data) => {
-            setItems(data.map((item) => ({...item, bookmark: false})));
-            // setProducts(data.map((item) => ({...item, bookmark: false})));
-          });
-      };
-
-      useEffect(() => {
-        getProducts();
-        // setProducts(items.map((item) => ({...item, bookmark: false})))
-        setProducts(items.filter((item) => item.Bookmark === true));
-      }, []);
-
-      useEffect(()=>{
-        // const filteredData = items.filter((item) => {
-        //     return (index > 0 ? item.type === titles[index-1] :item ) && item.bookmark === true ;
-        // });
-        // setProducts(filteredData.filter((data) => {
-       
-        //     // data.bookmark === true
-        // }));
-        // setProducts(items.filter((item) => {
-        //     return (index > 0 ? item.type === titles[index-1] : item) && item.bookmark === true;
-        // }))
-
-        setProducts((items.filter((item) => {
-            return index > 0 ? item.type === titles[index-1] : item 
-          })).filter((e) => e.bookmark));
-      }, [index]);
-
-    
-    return(
-    <B.BookmarkContainer>
-        <Category setIndex={setIndex} />
-        <ProductsItems index={index} items={products} setItems={setProducts} />
-    </B.BookmarkContainer>
-    )
-   
-}
-export default Bookmark;
+export default BookmarkList;
