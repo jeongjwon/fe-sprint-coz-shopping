@@ -4,8 +4,8 @@ import ProductsItem from "./ProductsItem";
 
 import * as P from "../style/ProductsItems.styled";
 
-const ProductsItems = ({ items, setItems }) => {
-
+const ProductsItems = ({ items, setItems, index }) => {
+  console.log(index, items);
   return (
     <P.ItemContainer>
       {items.map((item) => {
@@ -15,7 +15,7 @@ const ProductsItems = ({ items, setItems }) => {
           id={item.id}
           item={item}
           setItems={setItems}
-
+          index={index}
         />
         )
       })}

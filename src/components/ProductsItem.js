@@ -120,4 +120,3 @@ const ProductsItem = ({ item , setItems}) => {
   );
 };
 export default ProductsItem;
-

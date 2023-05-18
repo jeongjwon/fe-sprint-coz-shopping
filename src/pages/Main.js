@@ -22,13 +22,13 @@ const Main = () => {
         setLists(data.map((item) => ({ ...item, bookmark: false })));
       });
   };
+  
   useEffect(() => {
     getProducts();
-    setItems(lists.splice(0,4));
+    setItems(lists.slice(0,4));
   }, []);
 
-  console.log("main", items);
-
+  console.log(lists, items);
   return (
     <M.MainContainer>
       <M.ProductsSection>

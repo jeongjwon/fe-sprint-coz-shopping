@@ -6,7 +6,7 @@ export const Item = styled.li`
   display: flex;
   flex-direction: column;
   width: calc((100% - 7.2rem) / 4);
-  margin-right: 0.8em;
+
   
   > .item-img {
     width: 20vw;
@@ -14,7 +14,6 @@ export const Item = styled.li`
     min-height: 25vh;
     position: relative;
     border-radius: 12px;
-    margin-bottom: 0.5rem;
     > .item-bookmark {
       position: absolute;
       bottom: 8px;
@@ -31,14 +30,14 @@ export const Item = styled.li`
   > .item-desc {
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     > .item-desc-up{
         display: flex;
         justify-content: space-between;
         font-weight: 800;
 
         > .sale{
-            margin-bottom : 0.2rem;
+            margin-bottom : 0rem;
             color: #452CDD;
             font-weight: 800;
         }
