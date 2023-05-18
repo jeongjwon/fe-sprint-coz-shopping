@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 
 import Category from "../components/Category";
 import ProductsItems from "../components/ProductsItems";
+import LocalStorage from "../LocalStorage";
 
 import * as P from "../style/ProductsList.styled";
 const ProductsList = () => {
     const titles = ['Product', 'Category', 'Exhibition' , 'Brand'];
     const [index, setIndex] = useState(0);
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
+    const [items, setItems] =  LocalStorage("bookmarkLists", []);
     const [products, setProducts] = useState([]);
 
     const getProducts = () => {
@@ -34,7 +36,9 @@ const ProductsList = () => {
         }));
       }, [index]);
 
-    
+      // useEffect(()=>{
+      //   LocalStorage("bookmarkLists", items);
+      // },[items])
     return(
     <P.ProductsListContainer>
         <Category setIndex={setIndex} />

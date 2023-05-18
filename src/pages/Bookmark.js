@@ -10,7 +10,8 @@ import * as B from "../style/Bookmark.styled";
 const Bookmark = () => {
     const titles = ['Product', 'Category', 'Exhibition' , 'Brand'];
     const [index, setIndex] = useState(0);
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
+    const [items, setItems] =  LocalStorage("bookmarkLists", []);
     const [products, setProducts] = useState([]);
 
     const getProducts = () => {
