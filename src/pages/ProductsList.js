@@ -42,7 +42,7 @@ const ProductsList = () => {
     return(
     <P.ProductsListContainer>
         <Category setIndex={setIndex} />
-        <ProductsItems index={index} items={items} setItems={setItems} />
+        <ProductsItems index={index} items={products} setItems={setProducts} />
     </P.ProductsListContainer>
     )
    
