@@ -4,7 +4,7 @@ export const ProductsSection = styled.section`
 `;
 export const Title = styled.h2`
     text-align: left;
-    margin-left: 2.5rem;
+    /* margin-left: 2.5rem; */
 `;
 export const ItemContainer = styled.ul`
   display: flex;
