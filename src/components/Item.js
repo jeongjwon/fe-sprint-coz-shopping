@@ -81,10 +81,7 @@ const Item = ({ data }) => {
       <P.ItemImage
       onClick={handleOpenModal}
         className="item-img"
-        style={{
-          background: `url(${data.image_url || data.brand_image_url})`,
-          backgroundSize: "cover",
-        }}
+        url={`${data.image_url || data.brand_image_url}`}
       >
         <P.BookmarkBtn onClick={handleBookmark} className="item-bookmark" type="button">
           {/* <HiOutlineStar size={35} /> */}

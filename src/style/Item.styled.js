@@ -34,6 +34,8 @@ export const ItemImage = styled.div`
     min-height: 25vh;
     position: relative;
     border-radius: 12px;
+    background-image: url(${(props) => props.url});
+    background-size: cover;
 `;
 export const BookmarkBtn = styled.button`
   position: absolute;
@@ -41,6 +43,7 @@ export const BookmarkBtn = styled.button`
       right: 8px;
       background: transparent;
       border: none;
+      
       cursor: pointer;
       > svg {
         fill: rgba(223, 223, 223);
