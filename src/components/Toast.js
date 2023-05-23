@@ -5,7 +5,6 @@ import { HiOutlineStar } from "react-icons/hi";
 import * as T from "../style/Toast.styled";
 
 const Toast = ({ bookmark }) => {
-    console.log(bookmark);
   return (
     <T.ToastContainer>
       {!bookmark ? (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const Item = styled.li`
+export const ItemWrapper= styled.li`
   /* margin: 1rem; */
   /* overflow:hidden ; */
     
@@ -63,7 +63,7 @@ export const Item = styled.li`
     
   }
 `;
-export const ImgDiv = styled.div`
+export const ItemImage = styled.div`
  position: absolute;
       bottom: 8px;
       right: 8px;
