@@ -4,6 +4,7 @@ import {modalActions} from "../store/modal";
 import { HiOutlineStar } from "react-icons/hi";
 import { bookmarkActions } from "../store/bookmark";
 import { types } from "../constants/types";
+
 const Item = ({ data }) => {
     if(!data) return null;
 
