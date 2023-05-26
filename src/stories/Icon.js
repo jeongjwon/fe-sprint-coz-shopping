@@ -1,11 +1,12 @@
-import { Menu } from "react-feather"
+import { Menu } from "react-feather";
+import * as Icons from "react-feather";
 import { styled } from "styled-components";
 
-export const hamburger = 'Menu';
-export const Icon = () =>{
+export const iconNames = ["Menu", "X", "Star", "Gift"];
 
-    const MenuIcon = styled(Menu)`
-        color: black;
-    `
-    return <MenuIcon />
-}
+export const Icon = ({icon}) => {
+  const MenuIcon = styled(Icons[icon])`
+    color: black;
+  `;
+  return <MenuIcon />;
+};
