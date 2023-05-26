@@ -16,6 +16,11 @@ const DropShark = styled.div`
   border-left: 1rem solid transparent;
   border-right: 1rem solid transparent;
   background-color: transparent;
+  /* width: 1.6rem;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background-color: black;
+  box-shadow: 0px -2px 8px 5px rgba(0, 0, 0, 0.1); */
+  
   
 `;
 const DropdownMenu = styled.div`
