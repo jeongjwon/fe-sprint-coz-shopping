@@ -20,6 +20,12 @@ export const NavList = styled.li`
         }
         > span{
             font-weight: 400;
+
+        }
+        .clickedBtn{
+            font-weight: 700;
+            text-decoration: underline;
+            color: #412dd4;
         }
     }
 `;

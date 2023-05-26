@@ -26,7 +26,7 @@ const Category = ({ selectedType, setSelectedType }) => {
           <C.NavList key={idx} onClick={()=> setSelectedType(list.type)}>
             <div className="nav-box">
               <img src={list.img_url} alt={list.img_url} />
-              <span>{list.title}</span>
+              <span className={selectedType === list.type && 'clickedBtn'}>{list.title}</span>
             </div>
           </C.NavList>
         );
