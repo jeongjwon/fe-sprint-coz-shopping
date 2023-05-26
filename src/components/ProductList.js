@@ -1,34 +1,32 @@
 import * as P from "../style/List.styled";
-import axios from "axios";
-import React, {useState, useEffect} from "react";
-import Item from "./Item";
 
-const ProductList = () => {
-    const [items, setItems] = useState([]);
-    const [error, setError] = useState(null);
-    useEffect(() => {
-        const fetchData = async () =>{
-            try{
-                const res = await axios.get(
-                    "http://cozshopping.codestates-seb.link/api/v1/products?count=4"
-                );
-                setItems(res.data);
-            } catch(error){
-                setError("데이터를 가져오는 도중에 에러가 발생했습니다.");
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, []);
+import Item from "./Item";
+import useFetch from "../hooks/useFetch";
+import { useSelector } from "react-redux";
+import { title } from "../constants/title";
+
+const ProductList = ({titleList}) => {
+    const [data, error] = useFetch( "http://cozshopping.codestates-seb.link/api/v1/products");
+    const bookmark = useSelector((state) => state.bookmark);
+    const favoriteCount = 4;
     return(
         <P.ProductsSection>
-            <P.Title>상품 리스트</P.Title>
+            <P.Title>{titleList}</P.Title>
             <P.ItemContainer>
                 {error ? (
                     <div>{error}</div>
+                ) : titleList === title.PRODUCT_LIST ? (
+                    data.map((d) => <Item data={d} key={d.id} />).slice(0,favoriteCount)
+                ) : bookmark.length === 0 ? (
+                    <div> 북마크에 담긴 상품이 없습니다. </div>
                 ) : (
-                    items.map((item) => <Item item={item} key={item.id}/>)
+                    bookmark.map((id) => {
+                        return data.filter((d) => d.id === id)[0];
+                    })
+                    .slice(0, favoriteCount)
+                    .map((d, idx) => <Item data={d} key={`id${idx}`}/>)
                 )}
+               
             </P.ItemContainer>
         </P.ProductsSection>
     )

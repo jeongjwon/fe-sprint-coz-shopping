@@ -10,14 +10,21 @@ import ProductsList from "./pages/ProductsList";
 import Bookmark from "./pages/Bookmark";
 import Modal from "./components/Modal";
 import { useSelector } from "react-redux";
-
+import { Slide, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const isModal = useSelector((state) => state.modal.isModalOpen);
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <BrowserRouter>
+      <ToastContainer 
+        position="bottom-right" 
+        autoClose={2000}
+        pauseOnFocusLoss={false}
+        closeButton={false}
+        hideProgressBar={true}
+        transition={Slide}
+        />
       <div className="App">
         <Header />
         <Routes>
